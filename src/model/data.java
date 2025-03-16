@@ -23,6 +23,16 @@ public class data extends javax.swing.JFrame {
 
     Koleksidata koleksi = new Koleksidata();
 
+    public <T> void showMessage(T message) {
+        JOptionPane.showMessageDialog(this, message.toString(), "Info", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public void tampilkanData(List<? extends inventory> daftar) {
+        for (inventory item : daftar) {
+            System.out.println("ID: " + item.getId() + ", Nama: " + item.getNama());
+        }
+    }
+
     private void resizeListener() {
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -100,6 +110,7 @@ public class data extends javax.swing.JFrame {
 
                         inventory item = new inventory(id, nama, kategori, stok);
                         koleksi.add(item);
+                        koleksi.fireTableDataChanged(); 
 
                     } catch (NumberFormatException e) {
                         JOptionPane.showMessageDialog(this,
@@ -225,7 +236,7 @@ public class data extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonActionPerformed
-           popuptombol.show(button, 0, button.getHeight());
+        popuptombol.show(button, 0, button.getHeight());
     }//GEN-LAST:event_buttonActionPerformed
 
     private void addFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addFileActionPerformed
